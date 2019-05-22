@@ -1,1 +1,640 @@
-{"uuid": "f471f47d-b1a1-45ce-a2ec-f2f0921fa320", "tags": [], "format-version": "0.1", "name": "IslandViewer - FLASH, SPAdes, Prokka and IslandViewer", "steps": {"0": {"tool_id": null, "tool_version": null, "outputs": [], "workflow_outputs": [{"output_name": "output", "uuid": "ad52fd96-8cb8-42ec-8999-c7348f379897", "label": null}], "input_connections": {}, "tool_state": "{\"collection_type\": \"list:paired\", \"name\": \"sequence_reads_paired\"}", "id": 0, "uuid": "f39af4f6-29a6-4358-84b4-3319899cbb12", "errors": null, "name": "Input dataset collection", "label": "sequence_reads_paired", "inputs": [{"name": "sequence_reads_paired", "description": ""}], "position": {"top": 202, "left": 200}, "annotation": "", "content_id": null, "type": "data_collection_input"}, "1": {"tool_id": "irida.corefacility.ca/galaxy-shed/repos/irida/flash/FLASH/1.3.0", "tool_version": "1.3.0", "outputs": [{"type": "fastqsanger", "name": "extendedFrags"}, {"type": "fastqsanger", "name": "notCombined1"}, {"type": "fastqsanger", "name": "notCombined2"}, {"type": "fastqsanger", "name": "interNotCombined"}, {"type": "tabular", "name": "readsAndPairs"}, {"type": "txt", "name": "log_file"}], "workflow_outputs": [{"output_name": "log_file", "uuid": "635bc9c7-6de7-43d8-99c1-09ef1e435e23", "label": null}], "input_connections": {"input_type|fastq_collection": {"output_name": "output", "id": 0}}, "tool_state": "{\"__page__\": 0, \"min_overlap\": \"\\\"20\\\"\", \"max_overlap\": \"\\\"300\\\"\", \"__rerun_remap_job_id__\": null, \"outputs\": \"{\\\"output_type\\\": \\\"Non-interleaved_fastq\\\", \\\"__current_case__\\\": 0}\", \"input_type\": \"{\\\"fastq_collection\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"sPaired\\\": \\\"collections\\\", \\\"__current_case__\\\": 1}\", \"options\": \"{\\\"__current_case__\\\": 1, \\\"options_select\\\": \\\"basic\\\"}\"}", "id": 1, "tool_shed_repository": {"owner": "irida", "changeset_revision": "4287dd541327", "name": "flash", "tool_shed": "irida.corefacility.ca/galaxy-shed"}, "uuid": "d1d70bc2-41f1-43d3-983d-c1d66f5b8470", "errors": null, "name": "FLASH", "post_job_actions": {"HideDatasetActioninterNotCombined": {"output_name": "interNotCombined", "action_type": "HideDatasetAction", "action_arguments": {}}, "HideDatasetActionextendedFrags": {"output_name": "extendedFrags", "action_type": "HideDatasetAction", "action_arguments": {}}, "RenameDatasetActionlog_file": {"output_name": "log_file", "action_type": "RenameDatasetAction", "action_arguments": {"newname": "flash.log"}}, "HideDatasetActionnotCombined1": {"output_name": "notCombined1", "action_type": "HideDatasetAction", "action_arguments": {}}, "HideDatasetActionnotCombined2": {"output_name": "notCombined2", "action_type": "HideDatasetAction", "action_arguments": {}}, "HideDatasetActionreadsAndPairs": {"output_name": "readsAndPairs", "action_type": "HideDatasetAction", "action_arguments": {}}}, "label": null, "inputs": [{"name": "input_type", "description": "runtime parameter for tool FLASH"}], "position": {"top": 202, "left": 447}, "annotation": "", "content_id": "irida.corefacility.ca/galaxy-shed/repos/irida/flash/FLASH/1.3.0", "type": "tool"}, "2": {"tool_id": "toolshed.g2.bx.psu.edu/repos/nml/spades/spades/1.4", "tool_version": "1.4", "outputs": [{"type": "fasta", "name": "out_contigs"}, {"type": "tabular", "name": "out_contig_stats"}, {"type": "fasta", "name": "out_scaffolds"}, {"type": "tabular", "name": "out_scaffold_stats"}, {"type": "txt", "name": "out_log"}], "workflow_outputs": [{"output_name": "out_log", "uuid": "152871a9-a81a-4849-8863-fe4082190df5", "label": null}, {"output_name": "out_contigs", "uuid": "154a38bb-2411-41bd-bbe4-0796e6c2a150", "label": null}], "input_connections": {"libraries_1|files_0|file_type|unpaired_reads": {"output_name": "extendedFrags", "id": 1}, "libraries_0|files_0|file_type|fastq_collection": {"output_name": "output", "id": 0}}, "tool_state": "{\"__page__\": 0, \"iontorrent\": \"\\\"false\\\"\", \"cov\": \"{\\\"state\\\": \\\"off\\\", \\\"__current_case__\\\": 0}\", \"__rerun_remap_job_id__\": null, \"trustedcontigs\": \"[]\", \"kmer_choice\": \"{\\\"auto_kmer_choice\\\": \\\"true\\\", \\\"__current_case__\\\": 1}\", \"libraries\": \"[{\\\"lib_type\\\": \\\"paired_end\\\", \\\"__index__\\\": 0, \\\"orientation\\\": \\\"fr\\\", \\\"files\\\": [{\\\"file_type\\\": {\\\"fastq_collection\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"type\\\": \\\"paired-collection\\\", \\\"__current_case__\\\": 3}, \\\"__index__\\\": 0}]}, {\\\"lib_type\\\": \\\"paired_end\\\", \\\"__index__\\\": 1, \\\"orientation\\\": \\\"fr\\\", \\\"files\\\": [{\\\"file_type\\\": {\\\"type\\\": \\\"unpaired\\\", \\\"unpaired_reads\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 2}, \\\"__index__\\\": 0}]}]\", \"onlyassembler\": \"\\\"false\\\"\", \"nanopore\": \"[]\", \"pacbio\": \"[]\", \"sc\": \"\\\"false\\\"\", \"untrustedcontigs\": \"[]\", \"sanger\": \"[]\", \"careful\": \"\\\"true\\\"\"}", "id": 2, "tool_shed_repository": {"owner": "nml", "changeset_revision": "35cb17bd8bf9", "name": "spades", "tool_shed": "toolshed.g2.bx.psu.edu"}, "uuid": "e23dde8b-a500-405a-ad6e-8367a875d249", "errors": null, "name": "spades", "post_job_actions": {"HideDatasetActionout_contig_stats": {"output_name": "out_contig_stats", "action_type": "HideDatasetAction", "action_arguments": {}}, "RenameDatasetActionout_contigs": {"output_name": "out_contigs", "action_type": "RenameDatasetAction", "action_arguments": {"newname": "contigs-all.fasta"}}, "HideDatasetActionout_scaffolds": {"output_name": "out_scaffolds", "action_type": "HideDatasetAction", "action_arguments": {}}, "RenameDatasetActionout_log": {"output_name": "out_log", "action_type": "RenameDatasetAction", "action_arguments": {"newname": "spades.log"}}, "HideDatasetActionout_scaffold_stats": {"output_name": "out_scaffold_stats", "action_type": "HideDatasetAction", "action_arguments": {}}}, "label": null, "inputs": [], "position": {"top": 202, "left": 737}, "annotation": "", "content_id": "toolshed.g2.bx.psu.edu/repos/nml/spades/spades/1.4", "type": "tool"}, "3": {"tool_id": "toolshed.g2.bx.psu.edu/repos/jjohnson/regex_find_replace/regexColumn1/0.1.0", "tool_version": "0.1.0", "outputs": [{"type": "input", "name": "out_file1"}], "workflow_outputs": [], "input_connections": {"input": {"output_name": "out_contig_stats", "id": 2}}, "tool_state": "{\"__page__\": 0, \"field\": \"\\\"3\\\"\", \"__rerun_remap_job_id__\": null, \"checks\": \"[{\\\"__index__\\\": 0, \\\"replacement\\\": \\\"0.000000000000000001\\\", \\\"pattern\\\": \\\"^0$\\\"}]\", \"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", "id": 3, "tool_shed_repository": {"owner": "jjohnson", "changeset_revision": "9ea374bb0350", "name": "regex_find_replace", "tool_shed": "toolshed.g2.bx.psu.edu"}, "uuid": "b25b6100-7467-47c3-a616-cd60938eb5e8", "errors": null, "name": "Column Regex Find And Replace", "post_job_actions": {"HideDatasetActionout_file1": {"output_name": "out_file1", "action_type": "HideDatasetAction", "action_arguments": {}}}, "label": null, "inputs": [{"name": "input", "description": "runtime parameter for tool Column Regex Find And Replace"}], "position": {"top": 202, "left": 1035}, "annotation": "", "content_id": "toolshed.g2.bx.psu.edu/repos/jjohnson/regex_find_replace/regexColumn1/0.1.0", "type": "tool"}, "4": {"tool_id": "irida.corefacility.ca/galaxy-shed/repos/irida/filter_spades_repeats/filter_spades_repeat/1.0.0", "tool_version": "1.0.0", "outputs": [{"type": "fasta", "name": "output_with_repeats"}, {"type": "fasta", "name": "output_without_repeats"}, {"type": "fasta", "name": "repeat_sequences_only"}, {"type": "fasta", "name": "discarded_sequences"}, {"type": "txt", "name": "summary"}], "workflow_outputs": [{"output_name": "output_with_repeats", "uuid": "db4bab93-5ff3-40b7-9e71-5c20d634f0a7", "label": null}, {"output_name": "output_without_repeats", "uuid": "32d8cd5c-266b-44da-b584-549020150f0b", "label": null}, {"output_name": "summary", "uuid": "7c018af4-5175-4870-bf3c-de270b659971", "label": null}], "input_connections": {"fasta_input": {"output_name": "out_contigs", "id": 2}, "tab_input": {"output_name": "out_file1", "id": 3}}, "tool_state": "{\"__page__\": null, \"fasta_input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"rep_cutoff\": \"\\\"1.75\\\"\", \"__rerun_remap_job_id__\": null, \"keep_leftover\": \"\\\"yes\\\"\", \"tab_input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"cov_len_cutoff\": \"\\\"5000\\\"\", \"print_summary\": \"\\\"yes\\\"\", \"cov_cutoff\": \"\\\"0.33\\\"\", \"len_cutoff\": \"\\\"1000\\\"\"}", "id": 4, "tool_shed_repository": {"owner": "irida", "changeset_revision": "f9fc830fa47c", "name": "filter_spades_repeats", "tool_shed": "irida.corefacility.ca/galaxy-shed"}, "uuid": "61a9e304-bfac-4462-8332-fa2f346dabc2", "errors": null, "name": "Filter SPAdes repeats", "post_job_actions": {"HideDatasetActiondiscarded_sequences": {"output_name": "discarded_sequences", "action_type": "HideDatasetAction", "action_arguments": {}}, "RenameDatasetActionoutput_with_repeats": {"output_name": "output_with_repeats", "action_type": "RenameDatasetAction", "action_arguments": {"newname": "contigs-with-repeats.fasta"}}, "HideDatasetActionrepeat_sequences_only": {"output_name": "repeat_sequences_only", "action_type": "HideDatasetAction", "action_arguments": {}}}, "label": null, "inputs": [{"name": "fasta_input", "description": "runtime parameter for tool Filter SPAdes repeats"}, {"name": "tab_input", "description": "runtime parameter for tool Filter SPAdes repeats"}], "position": {"top": 202, "left": 1340}, "annotation": "", "content_id": "irida.corefacility.ca/galaxy-shed/repos/irida/filter_spades_repeats/filter_spades_repeat/1.0.0", "type": "tool"}, "5": {"tool_id": "irida.corefacility.ca/galaxy-shed/repos/irida/assemblystats/assemblystats/1.0.2", "tool_version": "1.0.2", "outputs": [{"type": "tabular", "name": "stats"}, {"type": "fasta", "name": "sortedcontigs"}, {"type": "png", "name": "histogrampng"}, {"type": "png", "name": "summedcontigspng"}, {"type": "tabular", "name": "histogramdata"}, {"type": "tabular", "name": "summedcontigdata"}], "workflow_outputs": [{"output_name": "stats", "uuid": "f259539e-d69c-4a5f-bf14-80606cb34b39", "label": null}], "input_connections": {"input": {"output_name": "output_with_repeats", "id": 4}}, "tool_state": "{\"__page__\": 0, \"input_type\": \"\\\"contig\\\"\", \"__rerun_remap_job_id__\": null, \"bucket\": \"\\\"false\\\"\", \"all_outputs\": \"\\\"false\\\"\", \"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", "id": 5, "tool_shed_repository": {"owner": "irida", "changeset_revision": "51b76a5d78a5", "name": "assemblystats", "tool_shed": "irida.corefacility.ca/galaxy-shed"}, "uuid": "74cbd982-b7a6-4c72-aa10-28e7198dccef", "errors": null, "name": "assemblystats", "post_job_actions": {"RenameDatasetActionstats": {"output_name": "stats", "action_type": "RenameDatasetAction", "action_arguments": {"newname": "assembly-stats-with-repeats.txt"}}, "HideDatasetActionsummedcontigdata": {"output_name": "summedcontigdata", "action_type": "HideDatasetAction", "action_arguments": {}}, "HideDatasetActionsummedcontigspng": {"output_name": "summedcontigspng", "action_type": "HideDatasetAction", "action_arguments": {}}, "HideDatasetActionhistogrampng": {"output_name": "histogrampng", "action_type": "HideDatasetAction", "action_arguments": {}}, "HideDatasetActionsortedcontigs": {"output_name": "sortedcontigs", "action_type": "HideDatasetAction", "action_arguments": {}}, "HideDatasetActionhistogramdata": {"output_name": "histogramdata", "action_type": "HideDatasetAction", "action_arguments": {}}}, "label": null, "inputs": [{"name": "input", "description": "runtime parameter for tool assemblystats"}], "position": {"top": 202, "left": 1624}, "annotation": "", "content_id": "irida.corefacility.ca/galaxy-shed/repos/irida/assemblystats/assemblystats/1.0.2", "type": "tool"}, "6": {"tool_id": "toolshed.g2.bx.psu.edu/repos/crs4/prokka/prokka/1.11.0", "tool_version": "1.11.0", "outputs": [{"type": "gff", "name": "out_gff"}, {"type": "txt", "name": "out_gbk"}, {"type": "fasta", "name": "out_fna"}, {"type": "fasta", "name": "out_faa"}, {"type": "fasta", "name": "out_ffn"}, {"type": "asn1", "name": "out_sqn"}, {"type": "fasta", "name": "out_fsa"}, {"type": "txt", "name": "out_tbl"}, {"type": "txt", "name": "out_err"}, {"type": "txt", "name": "out_txt"}, {"type": "txt", "name": "out_log"}], "workflow_outputs": [{"output_name": "out_log", "uuid": "bc65dcde-20d9-45c0-8417-8aa89a47bf4c", "label": null}, {"output_name": "out_gbk", "uuid": "7c6c2bba-159a-433a-b747-03466e771cb3", "label": null}, {"output_name": "out_txt", "uuid": "70993af6-490f-446f-9a0e-0f07e6020cc8", "label": null}, {"output_name": "out_err", "uuid": "af5272a7-383d-4275-8bf8-18f2b65d98ac", "label": null}], "input_connections": {"input": {"output_name": "output_with_repeats", "id": 4}}, "tool_state": "{\"kingdom\": \"{\\\"gcode\\\": \\\"11\\\", \\\"kingdom_select\\\": \\\"Bacteria\\\", \\\"__current_case__\\\": 1}\", \"__page__\": 0, \"norrna\": \"\\\"false\\\"\", \"usegenus\": \"\\\"false\\\"\", \"metagenome\": \"\\\"false\\\"\", \"centre\": \"\\\"C\\\"\", \"evalue\": \"\\\"1e-06\\\"\", \"proteins\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"locustag\": \"\\\"P\\\"\", \"fast\": \"\\\"false\\\"\", \"strain\": \"\\\"\\\"\", \"compliant\": \"{\\\"__current_case__\\\": 1, \\\"compliant_select\\\": \\\"yes\\\"}\", \"__rerun_remap_job_id__\": null, \"plasmid\": \"\\\"\\\"\", \"increment\": \"\\\"1\\\"\", \"gffver\": \"\\\"3\\\"\", \"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"rfam\": \"\\\"true\\\"\", \"genus\": \"\\\"\\\"\", \"species\": \"\\\"\\\"\", \"notrna\": \"\\\"false\\\"\"}", "id": 6, "tool_shed_repository": {"owner": "crs4", "changeset_revision": "eaee459f3d69", "name": "prokka", "tool_shed": "toolshed.g2.bx.psu.edu"}, "uuid": "f138e9ff-86a3-4762-93d6-6a9ce4de335d", "errors": null, "name": "Prokka", "post_job_actions": {"RenameDatasetActionout_err": {"output_name": "out_err", "action_type": "RenameDatasetAction", "action_arguments": {"newname": "prokka.err"}}, "HideDatasetActionout_faa": {"output_name": "out_faa", "action_type": "HideDatasetAction", "action_arguments": {}}, "HideDatasetActionout_fsa": {"output_name": "out_fsa", "action_type": "HideDatasetAction", "action_arguments": {}}, "RenameDatasetActionout_gbk": {"output_name": "out_gbk", "action_type": "RenameDatasetAction", "action_arguments": {"newname": "genome.gbk"}}, "HideDatasetActionout_tbl": {"output_name": "out_tbl", "action_type": "HideDatasetAction", "action_arguments": {}}, "RenameDatasetActionout_txt": {"output_name": "out_txt", "action_type": "RenameDatasetAction", "action_arguments": {"newname": "prokka_stats.txt"}}, "HideDatasetActionout_fna": {"output_name": "out_fna", "action_type": "HideDatasetAction", "action_arguments": {}}, "RenameDatasetActionout_sqn": {"output_name": "out_sqn", "action_type": "RenameDatasetAction", "action_arguments": {"newname": "genome.sqn"}}, "RenameDatasetActionout_log": {"output_name": "out_log", "action_type": "RenameDatasetAction", "action_arguments": {"newname": "prokka.log"}}, "HideDatasetActionout_gff": {"output_name": "out_gff", "action_type": "HideDatasetAction", "action_arguments": {}}, "HideDatasetActionout_sqn": {"output_name": "out_sqn", "action_type": "HideDatasetAction", "action_arguments": {}}, "HideDatasetActionout_ffn": {"output_name": "out_ffn", "action_type": "HideDatasetAction", "action_arguments": {}}}, "label": null, "inputs": [{"name": "proteins", "description": "runtime parameter for tool Prokka"}, {"name": "input", "description": "runtime parameter for tool Prokka"}], "position": {"top": 491, "left": 1625}, "annotation": "", "content_id": "toolshed.g2.bx.psu.edu/repos/crs4/prokka/prokka/1.11.0", "type": "tool"}, "7": {"tool_id": "testtoolshed.g2.bx.psu.edu/repos/glwinsor/islandviewerclient/islandviewerclient/0.1.0", "tool_version": "0.1.0", "outputs": [{"type": "genbank", "name": "gbk"}, {"type": "tabular", "name": "tab"}], "workflow_outputs": [{"output_name": "gbk", "uuid": "4cebec49-364c-4f80-b187-f83ad14c0a1c", "label": null}, {"output_name": "tab", "uuid": "5375b1c3-aa89-4787-b1fb-f7a5c2e7f737", "label": null}], "input_connections": {"sequence": {"output_name": "out_gbk", "id": 6}}, "tool_state": "{\"__page__\": null, \"token\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"accession\": \"\\\"\\\"\", \"sequence\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}", "id": 7, "tool_shed_repository": {"owner": "glwinsor", "changeset_revision": "6a99f61cb92b", "name": "islandviewerclient", "tool_shed": "testtoolshed.g2.bx.psu.edu"}, "uuid": "f95c5bf4-e427-4808-b230-5104a9f86bb9", "errors": null, "name": "IslandViewer Client", "post_job_actions": {"RenameDatasetActiongbk": {"output_name": "gbk", "action_type": "RenameDatasetAction", "action_arguments": {"newname": "islandviewer_GIs_reordered_contigs.gbk"}}, "RenameDatasetActiontab": {"output_name": "tab", "action_type": "RenameDatasetAction", "action_arguments": {"newname": "islandviewer_all_GIs.tab"}}},"label": null, "inputs": [{"name": "sequence", "description": "runtime parameter for tool IslandViewer Client"}], "position": {"top": 620, "left": 2080}, "annotation": "", "content_id": "testtoolshed.g2.bx.psu.edu/repos/glwinsor/islandviewerclient/islandviewerclient/0.1.0", "type": "tool"}}, "annotation": "", "a_galaxy_workflow": "true"}
+{
+  "uuid": "f471f47d-b1a1-45ce-a2ec-f2f0921fa320",
+  "tags": [],
+  "format-version": "0.1",
+  "name": "IslandViewer - Shovill, Prokka and IslandViewer",
+  "steps": {
+  "0": {
+      "tool_id": null,
+      "tool_version": null,
+      "outputs": [],
+      "workflow_outputs": [
+        {
+          "output_name": "output",
+          "uuid": "51587fae-8a73-46f0-91af-4f65377b59e7",
+          "label": null
+        }
+      ],
+      "input_connections": {},
+      "tool_state": "{\"collection_type\": \"list:paired\", \"name\": \"sequence_reads_paired\"}",
+      "id": 0,
+      "uuid": "917f2843-92b8-4ba7-9a1a-5f886154980c",
+      "errors": null,
+      "name": "Input dataset collection",
+      "label": "sequence_reads_paired",
+      "inputs": [
+        {
+          "name": "sequence_reads_paired",
+          "description": ""
+        }
+      ],
+      "position": {
+        "top": 200,
+        "left": 200
+      },
+      "annotation": "",
+      "content_id": null,
+      "type": "data_collection_input"
+    },
+    "1": {
+      "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/shovill/shovill/1.0.4",
+      "tool_version": "1.0.4",
+      "outputs": [
+        {
+          "type": "txt",
+          "name": "shovill_std_log"
+        },
+        {
+          "type": "fasta",
+          "name": "contigs"
+        },
+        {
+          "type": "txt",
+          "name": "contigs_graph"
+        }
+      ],
+      "workflow_outputs": [
+        {
+          "output_name": "contigs",
+          "uuid": "19150b18-02d2-422f-be0b-0314689cf5a1",
+          "label": null
+        },
+        {
+          "output_name": "shovill_std_log",
+          "uuid": "fa188ec7-4b52-4d52-8241-c9afa1f13fec",
+          "label": null
+        },
+        {
+          "output_name": "contigs_graph",
+          "uuid": "d572f4c0-d087-439c-b2b0-ccebc983f92e",
+          "label": null
+        }
+      ],
+      "input_connections": {
+        "library|input1": {
+          "output_name": "output",
+          "id": 0
+        }
+      },
+      "tool_state": "{\"adv\": \"{\\\"gsize\\\": \\\"\\\", \\\"kmers\\\": \\\"\\\", \\\"minlen\\\": \\\"0\\\", \\\"nocorr\\\": \\\"false\\\", \\\"depth\\\": \\\"100\\\", \\\"namefmt\\\": \\\"contig%05d\\\", \\\"mincov\\\": \\\"2\\\", \\\"opts\\\": \\\"\\\"}\", \"trim\": \"\\\"false\\\"\", \"log\": \"\\\"true\\\"\", \"__page__\": null, \"__rerun_remap_job_id__\": null, \"assembler\": \"\\\"spades\\\"\", \"library\": \"{\\\"lib_type\\\": \\\"collection\\\", \\\"input1\\\": {\\\"__class__\\\": \\\"RuntimeValue\\\"}, \\\"__current_case__\\\": 1}\"}",
+      "id": 1,
+      "tool_shed_repository": {
+        "owner": "iuc",
+        "changeset_revision": "865119fcb694",
+        "name": "shovill",
+        "tool_shed": "toolshed.g2.bx.psu.edu"
+      },
+      "uuid": "04e633cb-5bfc-4afd-935e-ee49cc18c6c4",
+      "errors": null,
+      "name": "Shovill",
+      "post_job_actions": {},
+      "label": null,
+      "inputs": [
+        {
+          "name": "library",
+          "description": "runtime parameter for tool Shovill"
+        }
+      ],
+      "position": {
+        "top": 200,
+        "left": 477
+      },
+      "annotation": "",
+      "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/shovill/shovill/1.0.4",
+      "type": "tool"
+    },
+    "2": {
+      "tool_id": "toolshed.g2.bx.psu.edu/repos/iuc/quast/quast/5.0.2",
+      "tool_version": "5.0.2",
+      "outputs": [
+        {
+          "type": "txt",
+          "name": "log_txt"
+        },
+        {
+          "type": "tabular",
+          "name": "mis_ass_tsv"
+        },
+        {
+          "type": "tabular",
+          "name": "unalign_tsv"
+        },
+        {
+          "type": "tabular",
+          "name": "quast_tsv"
+        },
+        {
+          "type": "html",
+          "name": "report_html"
+        },
+        {
+          "type": "pdf",
+          "name": "report_pdf"
+        }
+      ],
+      "workflow_outputs": [
+        {
+          "output_name": "log_txt",
+          "uuid": "3ffd7b9c-5365-43f7-9a0a-3dfb1f7b0835",
+          "label": null
+        },
+        {
+          "output_name": "report_html",
+          "uuid": "91b3939e-6f1f-4b19-912c-fd2e8e3b2832",
+          "label": null
+        },
+        {
+          "output_name": "quast_tsv",
+          "uuid": "9646badc-8576-4d14-806d-79e7d5befd7a",
+          "label": null
+        },
+        {
+          "output_name": "report_pdf",
+          "uuid": "492aaa31-84ca-4736-8893-8263debd0e35",
+          "label": null
+        }
+      ],
+      "input_connections": {
+        "input": {
+          "output_name": "contigs",
+          "id": 1
+        }
+      },
+      "tool_state": "{\"input_operon\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__page__\": null, \"threshold_contig\": \"\\\"0,1000\\\"\", \"__rerun_remap_job_id__\": null, \"annot\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"large\": \"\\\"false\\\"\", \"type_file\": \"\\\"contig\\\"\", \"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"input_size\": \"\\\"\\\"\", \"input_ref\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"min_contig\": \"\\\"500\\\"\", \"gene_selection\": \"\\\"prokaryotes\\\"\"}",
+      "id": 2,
+      "tool_shed_repository": {
+        "owner": "iuc",
+        "changeset_revision": "81df4950d65b",
+        "name": "quast",
+        "tool_shed": "toolshed.g2.bx.psu.edu"
+      },
+      "uuid": "fd139253-df91-4972-abb3-31d7128cea28",
+      "errors": null,
+      "name": "Quast",
+      "post_job_actions": {
+        "RenameDatasetActionreport_pdf": {
+          "output_name": "report_pdf",
+          "action_type": "RenameDatasetAction",
+          "action_arguments": {
+            "newname": "quast.pdf"
+          }
+        },
+        "RenameDatasetActionreport_html": {
+          "output_name": "report_html",
+          "action_type": "RenameDatasetAction",
+          "action_arguments": {
+            "newname": "quast.html.zip"
+          }
+        },
+        "HideDatasetActionmis_ass_tsv": {
+          "output_name": "mis_ass_tsv",
+          "action_type": "HideDatasetAction",
+          "action_arguments": {}
+        },
+        "RenameDatasetActionquast_tsv": {
+          "output_name": "quast_tsv",
+          "action_type": "RenameDatasetAction",
+          "action_arguments": {
+            "newname": "quast.tsv"
+          }
+        },
+        "HideDatasetActionunalign_tsv": {
+          "output_name": "unalign_tsv",
+          "action_type": "HideDatasetAction",
+          "action_arguments": {}
+        },
+        "RenameDatasetActionlog_txt": {
+          "output_name": "log_txt",
+          "action_type": "RenameDatasetAction",
+          "action_arguments": {
+            "newname": "quast.log"
+          }
+        }
+      },
+      "label": null,
+      "inputs": [
+        {
+          "name": "input_operon",
+          "description": "runtime parameter for tool Quast"
+        },
+        {
+          "name": "annot",
+          "description": "runtime parameter for tool Quast"
+        },
+        {
+          "name": "input",
+          "description": "runtime parameter for tool Quast"
+        },
+        {
+          "name": "input_ref",
+          "description": "runtime parameter for tool Quast"
+        }
+      ],
+      "position": {
+        "top": 200,
+        "left": 722
+      },
+      "annotation": "",
+      "content_id": "toolshed.g2.bx.psu.edu/repos/iuc/quast/quast/5.0.2",
+      "type": "tool"
+    },
+    "3": {
+      "tool_id": "irida.corefacility.ca/galaxy-shed/repos/irida/bundle_collections/bundle_collection/1.0.2",
+      "tool_version": "1.0.2",
+      "outputs": [
+        {
+          "type": "html",
+          "name": "html_file"
+        }
+      ],
+      "workflow_outputs": [
+        {
+          "output_name": "html_file",
+          "uuid": "77e7db8f-63d4-427b-bfb2-f31f1c4aced5",
+          "label": null
+        }
+      ],
+      "input_connections": {
+        "input": {
+          "output_name": "shovill_std_log",
+          "id": 1
+        }
+      },
+      "tool_state": "{\"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}",
+      "id": 3,
+      "tool_shed_repository": {
+        "owner": "irida",
+        "changeset_revision": "7bc329e1ada4",
+        "name": "bundle_collections",
+        "tool_shed": "irida.corefacility.ca/galaxy-shed"
+      },
+      "uuid": "2209d263-f797-4f14-9c2d-b75fa2418ae1",
+      "errors": null,
+      "name": "Bundle Collection",
+      "post_job_actions": {
+        "RenameDatasetActionhtml_file": {
+          "output_name": "html_file",
+          "action_type": "RenameDatasetAction",
+          "action_arguments": {
+            "newname": "shovill.log.zip"
+          }
+        }
+      },
+      "label": null,
+      "inputs": [
+        {
+          "name": "input",
+          "description": "runtime parameter for tool Bundle Collection"
+        }
+      ],
+      "position": {
+        "top": 540,
+        "left": 722
+      },
+      "annotation": "",
+      "content_id": "irida.corefacility.ca/galaxy-shed/repos/irida/bundle_collections/bundle_collection/1.0.2",
+      "type": "tool"
+    },
+    "4": {
+      "tool_id": "irida.corefacility.ca/galaxy-shed/repos/irida/bundle_collections/bundle_collection/1.0.2",
+      "tool_version": "1.0.2",
+      "outputs": [
+        {
+          "type": "html",
+          "name": "html_file"
+        }
+      ],
+      "workflow_outputs": [
+        {
+          "output_name": "html_file",
+          "uuid": "f6b6790d-b1db-419e-9837-ad00522e1287",
+          "label": null
+        }
+      ],
+      "input_connections": {
+        "input": {
+          "output_name": "contigs",
+          "id": 1
+        }
+      },
+      "tool_state": "{\"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}",
+      "id": 4,
+      "tool_shed_repository": {
+        "owner": "irida",
+        "changeset_revision": "7bc329e1ada4",
+        "name": "bundle_collections",
+        "tool_shed": "irida.corefacility.ca/galaxy-shed"
+      },
+      "uuid": "07ebb3e9-53ce-44a1-935c-87bda0164fbf",
+      "errors": null,
+      "name": "Bundle Collection",
+      "post_job_actions": {
+        "RenameDatasetActionhtml_file": {
+          "output_name": "html_file",
+          "action_type": "RenameDatasetAction",
+          "action_arguments": {
+            "newname": "contigs.fasta.zip"
+          }
+        }
+      },
+      "label": null,
+      "inputs": [
+        {
+          "name": "input",
+          "description": "runtime parameter for tool Bundle Collection"
+        }
+      ],
+      "position": {
+        "top": 656,
+        "left": 722
+      },
+      "annotation": "",
+      "content_id": "irida.corefacility.ca/galaxy-shed/repos/irida/bundle_collections/bundle_collection/1.0.2",
+      "type": "tool"
+    },
+    "5": {
+      "tool_id": "irida.corefacility.ca/galaxy-shed/repos/irida/bundle_collections/bundle_collection/1.0.2",
+      "tool_version": "1.0.2",
+      "outputs": [
+        {
+          "type": "html",
+          "name": "html_file"
+        }
+      ],
+      "workflow_outputs": [
+        {
+          "output_name": "html_file",
+          "uuid": "885c5cbe-c8d4-4799-8552-7eb00704840b",
+          "label": null
+        }
+      ],
+      "input_connections": {
+        "input": {
+          "output_name": "contigs_graph",
+          "id": 1
+        }
+      },
+      "tool_state": "{\"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"__rerun_remap_job_id__\": null, \"__page__\": 0}",
+      "id": 5,
+      "tool_shed_repository": {
+        "owner": "irida",
+        "changeset_revision": "7bc329e1ada4",
+        "name": "bundle_collections",
+        "tool_shed": "irida.corefacility.ca/galaxy-shed"
+      },
+      "uuid": "fdbe0c4a-272b-4bff-bf1e-4e0a4dee1567",
+      "errors": null,
+      "name": "Bundle Collection",
+      "post_job_actions": {
+        "RenameDatasetActionhtml_file": {
+          "output_name": "html_file",
+          "action_type": "RenameDatasetAction",
+          "action_arguments": {
+            "newname": "contigs.fastg.zip"
+          }
+        }
+      },
+      "label": null,
+      "inputs": [
+        {
+          "name": "input",
+          "description": "runtime parameter for tool Bundle Collection"
+        }
+      ],
+      "position": {
+        "top": 772,
+        "left": 722
+      },
+      "annotation": "",
+      "content_id": "irida.corefacility.ca/galaxy-shed/repos/irida/bundle_collections/bundle_collection/1.0.2",
+      "type": "tool"
+    },
+    "6": {
+      "tool_id": "toolshed.g2.bx.psu.edu/repos/crs4/prokka/prokka/1.13",
+      "tool_version": "1.13",
+      "outputs": [
+        {
+          "type": "gff",
+          "name": "out_gff"
+        },
+        {
+          "type": "txt",
+          "name": "out_gbk"
+        },
+        {
+          "type": "fasta",
+          "name": "out_fna"
+        },
+        {
+          "type": "fasta",
+          "name": "out_faa"
+        },
+        {
+          "type": "fasta",
+          "name": "out_ffn"
+        },
+        {
+          "type": "asn1",
+          "name": "out_sqn"
+        },
+        {
+          "type": "fasta",
+          "name": "out_fsa"
+        },
+        {
+          "type": "txt",
+          "name": "out_tbl"
+        },
+        {
+          "type": "tabular",
+          "name": "out_tsv"
+        },
+        {
+          "type": "txt",
+          "name": "out_err"
+        },
+        {
+          "type": "txt",
+          "name": "out_txt"
+        },
+        {
+          "type": "txt",
+          "name": "out_log"
+        }
+      ],
+      "workflow_outputs": [
+        {
+          "output_name": "out_txt",
+          "uuid": "caac8a9c-51e2-4aa4-82ad-8359644637f0",
+          "label": null
+        },
+        {
+          "output_name": "out_tbl",
+          "uuid": "0832cb3d-4597-46c7-9af1-9102000beebc",
+          "label": null
+        },
+        {
+          "output_name": "out_err",
+          "uuid": "625b1480-ed12-46cd-b894-8281c97b39ed",
+          "label": null
+        },
+        {
+          "output_name": "out_ffn",
+          "uuid": "38e6cbaf-13a0-4d3e-aea4-7b815ac4d853",
+          "label": null
+        },
+        {
+          "output_name": "out_fsa",
+          "uuid": "2c9a0c67-d4f8-4d37-8a98-fc6e05ad8543",
+          "label": null
+        },
+        {
+          "output_name": "out_tsv",
+          "uuid": "7d26c219-4e56-4e84-ab66-e79a6d666bec",
+          "label": null
+        },
+        {
+          "output_name": "out_fna",
+          "uuid": "f413d5e1-cebe-4292-b7f5-afce45132fd2",
+          "label": null
+        },
+        {
+          "output_name": "out_log",
+          "uuid": "7559d94d-3be5-4ef3-8a28-9cebe1b5946d",
+          "label": null
+        },
+        {
+          "output_name": "out_faa",
+          "uuid": "0fed3b0b-444a-432f-ad72-3306741f8b07",
+          "label": null
+        },
+        {
+          "output_name": "out_gbk",
+          "uuid": "bafc2e72-a025-45f1-8f22-d1ac441d85bd",
+          "label": null
+        },
+        {
+          "output_name": "out_sqn",
+          "uuid": "2cbcde13-eefb-49eb-89c9-7105984b2815",
+          "label": null
+        },
+        {
+          "output_name": "out_gff",
+          "uuid": "5f5f3f9d-72f6-43bd-b98f-3ee1c79efc41",
+          "label": null
+        }
+      ],
+      "input_connections": {
+        "input": {
+          "output_name": "contigs",
+          "id": 1
+        }
+      },
+      "tool_state": "{\"strain\": \"\\\"\\\"\", \"increment\": \"\\\"1\\\"\", \"species\": \"\\\"\\\"\", \"__page__\": 0, \"usegenus\": \"\\\"false\\\"\", \"evalue\": \"\\\"1e-06\\\"\", \"locustag\": \"\\\"P\\\"\", \"fast\": \"\\\"false\\\"\", \"compliant\": \"{\\\"mincontig\\\": \\\"200\\\", \\\"__current_case__\\\": 0, \\\"compliant_select\\\": \\\"no\\\", \\\"addgenes\\\": \\\"false\\\"}\", \"input\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"kingdom\": \"{\\\"gcode\\\": \\\"11\\\", \\\"kingdom_select\\\": \\\"Bacteria\\\", \\\"__current_case__\\\": 1}\", \"metagenome\": \"\\\"false\\\"\", \"centre\": \"\\\"\\\"\", \"outputs\": \"[\\\"gff\\\", \\\"gbk\\\", \\\"fna\\\", \\\"faa\\\", \\\"ffn\\\", \\\"sqn\\\", \\\"fsa\\\", \\\"tbl\\\", \\\"tsv\\\", \\\"err\\\", \\\"txt\\\"]\", \"gffver\": \"\\\"3\\\"\", \"norrna\": \"\\\"false\\\"\", \"proteins\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\", \"notrna\": \"\\\"false\\\"\", \"plasmid\": \"\\\"\\\"\", \"rfam\": \"\\\"false\\\"\", \"genus\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null}",
+      "id": 6,
+      "tool_shed_repository": {
+        "owner": "crs4",
+        "changeset_revision": "eaee459f3d69",
+        "name": "prokka",
+        "tool_shed": "toolshed.g2.bx.psu.edu"
+      },
+      "uuid": "e355cb1c-66a5-4708-ad35-2f6bfd9b0792",
+      "errors": null,
+      "name": "Prokka",
+      "post_job_actions": {},
+      "label": null,
+      "inputs": [
+        {
+          "name": "proteins",
+          "description": "runtime parameter for tool Prokka"
+        },
+        {
+          "name": "input",
+          "description": "runtime parameter for tool Prokka"
+        }
+      ],
+      "position": {
+        "top": 888,
+        "left": 722
+      },
+      "annotation": "",
+      "content_id": "toolshed.g2.bx.psu.edu/repos/crs4/prokka/prokka/1.13",
+      "type": "tool"
+    },
+    "7": {
+      "tool_id": "testtoolshed.g2.bx.psu.edu/repos/glwinsor/islandviewerclient/islandviewerclient/0.1.0",
+      "tool_version": "0.1.0",
+      "outputs": [
+        {
+          "type": "genbank",
+          "name": "gbk"
+        },
+        {
+          "type": "tabular",
+          "name": "tab"
+        }
+      ],
+      "workflow_outputs": [
+        {
+          "output_name": "gbk",
+          "uuid": "4cebec49-364c-4f80-b187-f83ad14c0a1c",
+          "label": null
+        },
+        {
+          "output_name": "tab",
+          "uuid": "5375b1c3-aa89-4787-b1fb-f7a5c2e7f737",
+          "label": null
+        }
+      ],
+      "input_connections": {
+        "sequence": {
+          "output_name": "out_gbk",
+          "id": 6
+        }
+      },
+      "tool_state": "{\"__page__\": null, \"token\": \"\\\"\\\"\", \"__rerun_remap_job_id__\": null, \"accession\": \"\\\"\\\"\", \"sequence\": \"{\\\"__class__\\\": \\\"RuntimeValue\\\"}\"}",
+      "id": 7,
+      "tool_shed_repository": {
+        "owner": "glwinsor",
+        "changeset_revision": "6a99f61cb92b",
+        "name": "islandviewerclient",
+        "tool_shed": "testtoolshed.g2.bx.psu.edu"
+      },
+      "uuid": "f95c5bf4-e427-4808-b230-5104a9f86bb9",
+      "errors": null,
+      "name": "IslandViewer Client",
+      "post_job_actions": {
+        "RenameDatasetActiongbk": {
+          "output_name": "gbk",
+          "action_type": "RenameDatasetAction",
+          "action_arguments": {
+            "newname": "islandviewer_GIs_reordered_contigs.gbk"
+          }
+        },
+        "RenameDatasetActiontab": {
+          "output_name": "tab",
+          "action_type": "RenameDatasetAction",
+          "action_arguments": {
+            "newname": "islandviewer_all_GIs.tab"
+          }
+        }
+      },
+      "label": null,
+      "inputs": [
+        {
+          "name": "sequence",
+          "description": "runtime parameter for tool IslandViewer Client"
+        }
+      ],
+      "position": {
+        "top": 620,
+        "left": 2080
+      },
+      "annotation": "",
+      "content_id": "testtoolshed.g2.bx.psu.edu/repos/glwinsor/islandviewerclient/islandviewerclient/0.1.0",
+      "type": "tool"
+    }
+  },
+  "annotation": "",
+  "a_galaxy_workflow": "true"
+}
